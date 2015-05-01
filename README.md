@@ -20,6 +20,18 @@ Devstackのメモ置き場です。
 - devstack/local.confを作成
 - ./stack.sh
 
+
+###ファイルについて説明
+
+ファイル              | 説明
+-------------------- | ------------------------------
+keystonerc_admin     | 環境設定ファイルのサンプル
+local.conf           | Nova-network構成(DevstackのDefault)
+local-neutron.conf   | Neutronを使う構成
+
+local-neutron.confを使う場合は、ファイル名をlocal.confにリネームして、~/debstackディレクトリーに置いてください。
+
+
 ###注意
 
 1.stack.shはユーザー権限でないと実行できません。
