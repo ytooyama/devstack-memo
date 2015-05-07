@@ -20,7 +20,7 @@ Devstackのメモ置き場です。
 - devstack/local.confを作成
 - ./stack.sh
 
-###ホストに必要なスペック
+###ホストに必要な最小構成
 CirrOS以外のOSをとりあえず動かしたい場合は、少なくとも以下の環境が必要です（1ノード構成の環境でUbuntuを動かす場合の例）。
 
 - CPU: 3Core
@@ -62,6 +62,47 @@ local-neutron.confを使う場合は、ファイル名をlocal.confにリネー�
 | swap                       |             |
 | vcpus                      | 1           |
 +----------------------------+-------------+
+````
+
+4.Neutron構成でDevStackでデプロイしたOpenStack環境に、DevStackホスト以外からアクセスしたい場合は次のようにしてください。
+
+- local-neutron.confテンプレートを以下のように編集
+- local.confにリネームしてstack.shを実行
+
+````
+#ホストのIPアドレス
+HOST_IP=172.17.14.100
+#割り当てるネットワークの範囲(24bitで)
+FLOATING_RANGE=172.17.14.0/24
+#ゲートウェイのIPアドレス
+PUBLIC_NETWORK_GATEWAY=172.17.14.1
+#ネットワーク範囲からFloating IP用として切り出す範囲を指定
+Q_FLOATING_ALLOCATION_POOL=start=172.17.14.193,end=172.17.14.222
+````
+
+- br-exにPUBLIC_NETWORK_GATEWAYで指定したIPアドレスが振られるので除去
+
+````
+$ sudo ifconfig br-ex 0.0.0.0
+````
+
+- br-exブリッジに利用するNICを加える（eth1を加える例）
+
+````
+$ sudo ovs-vsctl add-port br-ex eth1
+````
+
+- eth1の設定を追記してNICをup
+  - もちろん、eth1はeth0と同じネットワークにつなぎます。
+
+````
+$ sudo vi /etc/network/interfaces
+...
+auto eth1
+iface eth1 inet static
+address 0.0.0.0
+
+$ sudo ifdown eth1;sudo ifup eth1
 ````
 
 ###参考サイト
