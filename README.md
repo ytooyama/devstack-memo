@@ -66,7 +66,7 @@ local-neutron.confを使う場合は、ファイル名をlocal.confにリネー�
 
 4.Neutron構成でDevStackでデプロイしたOpenStack環境に、DevStackホスト以外からアクセスしたい場合は次のようにしてください。
 
-- local-neutron.confテンプレートを以下のように編集
+- local-neutron.confテンプレートの該当のパラメーターを以下のように変更
 - local.confにリネームしてstack.shを実行
 
 ````
