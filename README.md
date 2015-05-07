@@ -20,6 +20,12 @@ Devstackのメモ置き場です。
 - devstack/local.confを作成
 - ./stack.sh
 
+###ホストに必要なスペック
+CirrOS以外のOSをとりあえず動かしたい場合は、少なくとも以下の環境が必要です（1ノード構成の環境でUbuntuを動かす場合の例）。
+
+- CPU: 3Core
+- Memory: 3GB
+- Disk: 30GB
 
 ###ファイルについて説明
 
@@ -30,7 +36,6 @@ local.conf           | Nova-network構成(DevstackのDefault)
 local-neutron.conf   | Neutronを使う構成
 
 local-neutron.confを使う場合は、ファイル名をlocal.confにリネームして、~/debstackディレクトリーに置いてください。
-
 
 ###注意
 
@@ -58,3 +63,8 @@ local-neutron.confを使う場合は、ファイル名をlocal.confにリネー�
 | vcpus                      | 1           |
 +----------------------------+-------------+
 ````
+
+###参考サイト
+参考になるサイトを以下に追記します。
+
+-  <https://github.com/rafiror/openstack/wiki/Devstack%E5%85%A5%E9%96%80>
