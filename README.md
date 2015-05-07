@@ -1,10 +1,10 @@
 
-#Devstack-memo
+#DevStack-memo
 
-Devstackのメモ置き場です。
+DevStackのメモ置き場です。
 
 
-##DevstackによるOpenStackデプロイの手順
+##DevStackによるOpenStackデプロイの手順
 (2015/4/28現在)
 
 - OSをインストール
