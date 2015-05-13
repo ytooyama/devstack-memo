@@ -15,7 +15,7 @@ DevStackのメモ置き場です。
 - echo "stack ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 - apt-get install git -y || yum install -y git
 - su - stack (ユーザーに切り替え)
-- git clone https://git.openstack.org/openstack-dev/devstack
+- git clone -b stable/kilo https://git.openstack.org/openstack-dev/devstack
 - cd devstack
 - devstack/local.confを作成
 - ./stack.sh
