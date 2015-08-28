@@ -3,7 +3,7 @@
 rm -rf devstack
 git clone -b stable/kilo https://git.openstack.org/openstack-dev/devstack
 
-ln -s /home/stack/local.conf devstack/local.conf
+ln -s ~/devstack-memo/local.conf devstack/local.conf
 
 echo "run the stack.sh? Cancel:(ctrl+c)"
 read confstack1
