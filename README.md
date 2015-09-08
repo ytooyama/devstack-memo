@@ -45,6 +45,11 @@ local-neutron.conf   | Neutronを使う構成
 
 local-neutron.confを使う場合は、ファイル名をlocal.confにリネームして、~/debstackディレクトリーに置いてください。
 
+local.confの書き方は以下を参照。
+
+- <http://docs.openstack.org/developer/devstack/configuration.html>
+- <https://github.com/openstack-dev/devstack/blob/master/samples/local.conf>
+
 ###注意
 
 1.stack.shはユーザー権限でないと実行できません。
