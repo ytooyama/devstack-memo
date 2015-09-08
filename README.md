@@ -5,9 +5,9 @@ DevStackのメモ置き場です。
 
 
 ##DevStackによるOpenStackデプロイの手順
-(2015/4/28現在)
+(2015/9/8現在)
 
-- OSをインストール
+1. OSをインストール
 - システムのアップデート
 - IPアドレス、ホスト名の設定
 - adduser stack (管理ユーザーでなければどのユーザーでも可)
@@ -15,10 +15,18 @@ DevStackのメモ置き場です。
 - echo "stack ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 - apt-get install git -y || yum install -y git
 - su - stack (ユーザーに切り替え)
-- git clone -b stable/kilo https://git.openstack.org/openstack-dev/devstack
+- git clone https://github.com/ytooyama/devstack-memo.git
+- cd devstack-memo
+- ./devstack.sh
+
+このリポジトリーを使わない場合は上記8まで実施した後に次の通り実施
+
+1. git clone -b stable/kilo https://git.openstack.org/openstack-dev/devstack
 - cd devstack
-- devstack/local.confを作成
+- local.confやlocal.shへの記述
 - ./stack.sh
+
+
 
 ###ホストに必要な最小構成
 CirrOS以外のOSをとりあえず動かしたい場合は、少なくとも以下の環境が必要です（1ノード構成の環境でUbuntuを動かす場合の例）。

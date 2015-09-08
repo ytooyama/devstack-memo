@@ -11,4 +11,4 @@ bash devstack/stack.sh
 
 echo "configure br-ex? Cancel:(ctrl+c)"
 read confstack2
-sudo ifconfig br-ex 0.0.0.0 && sudo ovs-vsctl add-port br-ex eth1
+sudo ifconfig br-ex 0.0.0.0 && sudo ovs-vsctl add-port br-ex eth0
