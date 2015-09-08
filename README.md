@@ -19,7 +19,7 @@ DevStackのメモ置き場です。
 - cd devstack-memo
 - ./devstack.sh
 
-このリポジトリーを使わない場合は上記8まで実施した後に次の通り実施
+このリポジトリーのスクリプトを使わない場合は上記8まで実施した後に次の通り実施。
 
 1. git clone -b stable/kilo https://git.openstack.org/openstack-dev/devstack
 - cd devstack
