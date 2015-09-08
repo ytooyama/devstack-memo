@@ -17,13 +17,14 @@ DevStackのメモ置き場です。
 - su - stack (ユーザーに切り替え)
 - git clone https://github.com/ytooyama/devstack-memo.git
 - cd devstack-memo
+- local.confやlocal.shを編集
 - ./devstack.sh
 
 このリポジトリーのスクリプトを使わない場合は上記8まで実施した後に次の通り実施。
 
 1. git clone -b stable/kilo https://git.openstack.org/openstack-dev/devstack
 - cd devstack
-- local.confやlocal.shへの記述
+- local.confやlocal.shを編集
 - ./stack.sh
 
 
