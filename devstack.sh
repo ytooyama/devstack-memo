@@ -1,14 +1,16 @@
 #!/bin/bash
 
+branch=stable/liberty
+
 if [ -d devstack ];
 then
   echo "devstack dir is found. Clone the New Sources."
   bash devstack/unstack.sh
   rm -rf devstack
-  git clone -b stable/kilo https://git.openstack.org/openstack-dev/devstack
+  git clone -b $branch https://git.openstack.org/openstack-dev/devstack
 else
   echo "devstack dir is not found. Clone the Sources."
-  git clone -b stable/kilo https://git.openstack.org/openstack-dev/devstack
+  git clone -b $branch https://git.openstack.org/openstack-dev/devstack
 fi
 
 if [ -h devstack/local.conf ];
