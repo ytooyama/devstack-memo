@@ -1,11 +1,11 @@
 
-#DevStack-memo
+# DevStack-memo
 
 DevStackのメモ置き場です。
 
 
-##DevStackによるOpenStackデプロイの手順
-(2015/9/8現在)
+## DevStackによるOpenStackデプロイの手順
+(2016/7/22現在)
 
 1. OSをインストール
 - システムのアップデート
@@ -20,23 +20,24 @@ DevStackのメモ置き場です。
 - local.confやlocal.shを編集
 - ./devstack.sh
 
-このリポジトリーのスクリプトを使わない場合は上記8まで実施した後に次の通り実施。
+このリポジトリーのスクリプトを使わない場合は上記8まで実施した後に次の通り実施(-bでOpenStackバージョンを指定。指定できるバージョンは[公式のgitを確認](https://github.com/openstack-dev/devstack))。
 
 1. git clone -b stable/kilo https://git.openstack.org/openstack-dev/devstack
 - cd devstack
 - local.confやlocal.shを編集
 - ./stack.sh
 
+[local.confの書き方は公式のドキュメント](http://docs.openstack.org/developer/devstack/configuration.html)などを参考にしてください。
 
 
-###ホストに必要な最小構成
+### ホストに必要な最小構成
 CirrOS以外のOSをとりあえず動かしたい場合は、少なくとも以下の環境が必要です（1ノード構成の環境でUbuntuを動かす場合の例）。
 
 - CPU: 3Core
 - Memory: 3GB
 - Disk: 30GB
 
-###ファイルについて説明
+### ファイルについて説明
 
 ファイル              | 説明
 -------------------- | ------------------------------
@@ -51,7 +52,7 @@ local.confの書き方は以下を参照。
 - <http://docs.openstack.org/developer/devstack/configuration.html>
 - <https://github.com/openstack-dev/devstack/blob/master/samples/local.conf>
 
-###注意
+### 注意
 
 1.stack.shはユーザー権限でないと実行できません。
 
@@ -119,7 +120,7 @@ address 0.0.0.0
 $ sudo ifdown eth1;sudo ifup eth1
 ````
 
-###参考サイト
+### 参考サイト
 参考になるサイトを以下に追記します。
 
 -  <https://github.com/rafiror/openstack/wiki/Devstack%E5%85%A5%E9%96%80>
