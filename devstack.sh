@@ -3,6 +3,7 @@
 if [ -d devstack ];
 then
   echo "devstack dir is found. Clone the New Sources."
+  bash devstack/unstack.sh
   rm -rf devstack
   git clone -b stable/kilo https://git.openstack.org/openstack-dev/devstack
 else
