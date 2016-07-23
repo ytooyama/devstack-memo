@@ -14,6 +14,7 @@ DevStackのメモ置き場です。
 - apt-get install sudo -y || yum install -y sudo
 - echo "stack ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 - apt-get install git -y || yum install -y git
+- (RHEL7/CentOS7の場合のみ) yum install epel-release
 - su - stack (ユーザーに切り替え)
 - git clone https://github.com/ytooyama/devstack-memo.git
 - cd devstack-memo
