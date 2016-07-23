@@ -5,7 +5,7 @@ DevStackのメモ置き場です。
 
 
 ## DevStackによるOpenStackデプロイの手順
-(2016/7/22現在)
+(2016/7/23現在)
 
 1. OSをインストール
 - システムのアップデート
@@ -22,7 +22,7 @@ DevStackのメモ置き場です。
 
 このリポジトリーのスクリプトを使わない場合は上記8まで実施した後に次の通り実施(-bでOpenStackバージョンを指定。指定できるバージョンは[公式のgitを確認](https://github.com/openstack-dev/devstack))。
 
-1. git clone -b stable/kilo https://git.openstack.org/openstack-dev/devstack
+1. git clone -b stable/mitaka https://git.openstack.org/openstack-dev/devstack
 - cd devstack
 - local.confやlocal.shを編集
 - ./stack.sh
@@ -31,8 +31,9 @@ DevStackのメモ置き場です。
 
 
 ### ホストに必要な最小構成
-CirrOS以外のOSをとりあえず動かしたい場合は、少なくとも以下の環境が必要です（1ノード構成の環境でUbuntuを動かす場合の例）。
+CirrOS以外のOSをとりあえず動かしたい場合は、少なくとも以下の環境が必要です（1ノード構成の環境でインスタンスを動かす場合の例）。
 
+- OS: Ubuntu Trusty or RHEL7 or CentOS7
 - CPU: 3Core
 - Memory: 3GB
 - Disk: 30GB
@@ -56,9 +57,21 @@ local.confの書き方は以下を参照。
 
 1.stack.shはユーザー権限でないと実行できません。
 
-2.Ubuntuで構築する場合はLTS版のUbuntu 14.04.xを使った方が良いです。現状はUbuntu 15.04に対応していないようでエラーになります。
+2.Ubuntuで構築する場合はLTS版のUbuntu 14.04.xを使った方が良いです。
 
-3.CirrOS以外のOSを動かしたい場合は、vCPU1、メモリ1GB、ストレージ4GBのフレーバーを作った方が良いです。サイトに上がっているkeystonerc_admin.txtのような内容の環境変数設定ファイルを読み込ませてから、openstack flavor createコマンドでフレーバーを作成してください。
+3.RHEL7やCentOS7でdevstackを使う場合は、stack.shの記述に気をつける必要があります。stack.shの中に`https://rdoproject.org/repos/rdo-release.rpm`をインストールするように記述されています。これだと一番最新安定版のOpenStackバージョンがインストールされます。特定のバージョンを指定する場合は書き換えが必要です。
+
+```
+stack.sh
+    # install the lastest RDO
+    is_package_installed rdo-release || yum_install https://rdoproject.org/repos/rdo-release.rpm
+```
+
+バージョン向けrpmパッケージは以下から確認できます。
+
+- <https://repos.fedorapeople.org/repos/openstack/>
+
+4.CirrOS以外のOSを動かしたい場合は、vCPU1、メモリ1GB、ストレージ4GBのフレーバーを作った方が良いです。サイトに上がっているkeystonerc_admin.txtのような内容の環境変数設定ファイルを読み込ませてから、openstack flavor createコマンドでフレーバーを作成してください。
 
 ````
 # openstack flavor create m1.standard --vcpus 1 --ram 1024 \
@@ -79,7 +92,7 @@ local.confの書き方は以下を参照。
 +----------------------------+-------------+
 ````
 
-4.Neutron構成でDevStackでデプロイしたOpenStack環境に、DevStackホスト以外からアクセスしたい場合は次のようにしてください。
+5.Neutron構成でDevStackでデプロイしたOpenStack環境に、DevStackホスト以外からアクセスしたい場合は次のようにしてください。
 
 - local-neutron.confテンプレートの該当のパラメーターを以下のように変更
 - local.confにリネームしてstack.shを実行
@@ -124,3 +137,5 @@ $ sudo ifdown eth1;sudo ifup eth1
 参考になるサイトを以下に追記します。
 
 -  <https://github.com/rafiror/openstack/wiki/Devstack%E5%85%A5%E9%96%80>
+-  [DevStack公式](http://docs.openstack.org/developer/devstack/)
+-  [All-In-One Single VM](http://docs.openstack.org/developer/devstack/guides/single-vm.html)
