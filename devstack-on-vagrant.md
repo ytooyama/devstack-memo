@@ -1,5 +1,7 @@
 # DevStackをVagrantで動かす
 
+(2016/7/24現在)
+
 Vagrantを使ってLinuxをデプロイして、その上でDevStackを動かし、OpenStackをデプロイする方法です。本例ではVagrantを動かすプラットフォームとしてOS Xを、DevStackを動かすプラットフォームとしてCentOS 7を使っています。
 
 ## VagrantとVirtualBoxを用意
@@ -14,6 +16,9 @@ Vagrantを使ってLinuxをデプロイして、その上でDevStackを動かし
 
 * [リリース一覧](https://releases.hashicorp.com/vagrant/)
 
+### 注意
+
+Vagrant 1.8.4はVirtualBox 5.0.xまでのサポートです。Vagrant 1.8.5でVirtualBox対応しましたが、Vagrantにバグがあって現在想定通り動きません。
 
 ## Vagrant boxの準備
 
