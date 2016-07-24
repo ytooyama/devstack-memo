@@ -18,7 +18,7 @@ Vagrantを使ってLinuxをデプロイして、その上でDevStackを動かし
 
 ### 注意
 
-Vagrant 1.8.4はVirtualBox 5.0.xまでのサポートです。Vagrant 1.8.5でVirtualBox対応しましたが、Vagrantにバグがあって現在想定通り動きません。
+Vagrant 1.8.4はVirtualBox 5.0.xまでのサポートです。Vagrant 1.8.5でVirtualBox 5.1対応しましたが、Vagrantにバグがあって現在想定通り動きません。
 
 ## Vagrant boxの準備
 
