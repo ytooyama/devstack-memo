@@ -1,6 +1,6 @@
 # DevStackをVagrantで動かす
 
-(2016/7/24現在)
+(2016/7/26現在)
 
 Vagrantを使ってLinuxをデプロイして、その上でDevStackを動かし、OpenStackをデプロイする方法です。本例ではVagrantを動かすプラットフォームとしてOS Xを、DevStackを動かすプラットフォームとしてCentOS 7を使っています。
 
@@ -25,7 +25,7 @@ Vagrant 1.8.4はVirtualBox 5.0.xまでのサポートです。Vagrant 1.8.5でVi
 [CentOS 7](http://cloud.centos.org/centos/7/vagrant/x86_64/images/) の公式Vagrant boxイメージをvagrant box addコマンドで追加
 
 ```
-osx$ vagrant box add cent/7 http://cloud.centos.org/centos/7/vagrant/x86_64/images/CentOS-7-x86_64-Vagrant-1605_01.VirtualBox.box
+osx$ vagrant box add cent/7 http://cloud.centos.org/centos/7/vagrant/x86_64/images/CentOS-7-x86_64-Vagrant-1606_01.VirtualBox.box
 ```
 
 ## Vagrant構成ファイルの作成
@@ -39,22 +39,25 @@ osx$ mkdir test
 * 構成ファイルを作成する
 
 ```
-osx$ vagrant init cent/7
-
-A `Vagrantfile` has been placed in this directory. You are now
-ready to `vagrant up` your first virtual environment! Please read
-the comments in the Vagrantfile as well as documentation on
-`vagrantup.com` for more information on using Vagrant.
-```
-
-* 構成ファイルを編集する
-
-```
 osx$ vi Vagrantfile
 ...
-config.vm.network "public_network"  ←コメントを外す
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
 
-↓ 以下の記述をend手前の最下行に追記する(スペックに合わせて適宜設定)
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+
+  # The most common configuration options are documented and commented below.
+  # For a complete reference, please see the online documentation at
+  # https://docs.vagrantup.com.
+
+#custum config
+Vagrant.configure(2) do |config|
+VAGRANTFILE_API_VERSION = "2"
+
+#Global
   config.vm.provider "virtualbox" do |vb|
     # Use VBoxManage to customize the VM.
     vb.customize [
@@ -62,10 +65,18 @@ config.vm.network "public_network"  ←コメントを外す
       "--cpus", "2",
       "--memory", "3072",
       "--paravirtprovider", "kvm",
+      "--nicpromisc2", "allow-all"
     ]
   end
-  
-end  ←最下行
+
+#CentOS7
+ config.vm.define :cent7n1 do |cent7n1|
+  cent7n1.vm.box = "cent/7"
+  cent7n1.vm.hostname = "cent7n1"
+  cent7n1.vm.network "public_network"
+ end
+#eof
+end
 ```
 
 ## VagrantでCentOS 7のデプロイ
@@ -73,14 +84,14 @@ end  ←最下行
 * `vagrant up`の実行
 
 ```
-osx$ vagrant up
+osx$ vagrant up cent7n1
 ```
 
 * 後で使うのでSSH接続可能なユーザーを作っておきます。ユーザー名、パスワードは適当なものを。
 
 ```
-vagrant@cent7$ useradd clouduser
-vagrant@cent7$ passwd clouduser
+vagrant@cent7$ sudo useradd clouduser
+vagrant@cent7$ sudo passwd clouduser
 ```
 
 ## OpenStackのデプロイ
