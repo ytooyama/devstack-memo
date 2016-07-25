@@ -1,11 +1,11 @@
-
 # DevStack-memo
+(2016/7/25更新)
 
 DevStackのメモ置き場です。
 
 
 ## DevStackによるOpenStackデプロイの手順
-(2016/7/23現在)
+(2016/7/25現在)
 
 1. OSをインストール
 - システムのアップデート
@@ -31,7 +31,7 @@ DevStackのメモ置き場です。
 [local.confの書き方は公式のドキュメント](http://docs.openstack.org/developer/devstack/configuration.html)などを参考にしてください。
 
 
-### ホストに必要な最小構成
+## ホストに必要な最小構成
 CirrOS以外のOSをとりあえず動かしたい場合は、少なくとも以下の環境が必要です（1ノード構成の環境でインスタンスを動かす場合の例）。
 
 - OS: Ubuntu Trusty or RHEL7 or CentOS7
@@ -39,13 +39,15 @@ CirrOS以外のOSをとりあえず動かしたい場合は、少なくとも以
 - Memory: 3GB
 - Disk: 30GB
 
-### ファイルについて説明
+## ファイルについて説明
 
 ファイル              | 説明
 -------------------- | ------------------------------
 keystonerc_admin     | 環境設定ファイルのサンプル
 local.conf           | Nova-network構成(DevstackのDefault)
 local-neutron.conf   | Neutronを使う構成
+devstack-on-the-vagrant.md | VagrantでCentOS7を用意してDevstackでOpenStackを構築する流れを記したメモ。
+Using-old-release.md | OpenStackの古いバージョンを使う場合にDevStackソースの修正箇所を記したメモ。
 
 local-neutron.confを使う場合は、ファイル名をlocal.confにリネームして、~/debstackディレクトリーに置いてください。
 
@@ -134,7 +136,7 @@ address 0.0.0.0
 $ sudo ifdown eth1;sudo ifup eth1
 ````
 
-### 参考サイト
+## 参考サイト
 参考になるサイトを以下に追記します。
 
 -  <https://github.com/rafiror/openstack/wiki/Devstack%E5%85%A5%E9%96%80>
