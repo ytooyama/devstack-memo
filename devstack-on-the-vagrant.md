@@ -1,6 +1,6 @@
 # DevStackをVagrantで動かす
 
-(2016/7/24現在)
+(2016/7/25現在)
 
 Vagrantを使ってLinuxをデプロイして、その上でDevStackを動かし、OpenStackをデプロイする方法です。本例ではVagrantを動かすプラットフォームとしてOS Xを、DevStackを動かすプラットフォームとしてCentOS 7を使っています。
 
@@ -86,6 +86,8 @@ vagrant@cent7$ passwd clouduser
 ## OpenStackのデプロイ
 
 あとは[この手順](https://github.com/ytooyama/devstack-memo/blob/master/README.md) の2番以降にしたがって実行するとOpenStack環境が出来上がります。
+
+VagrantでデプロイしたCentOS 7はeth1はDHCPでIPを取得しますが、eth0側でOpenStackサービスが動くのでeth1は固定IPでもそうでなくても構いません。
 
 Mitakaを構築すると次のような出力がされます。これで完成です。
 

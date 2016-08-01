@@ -3,6 +3,12 @@
 
 ## Mitaka
 
+ソースのクローン
+
+```
+$ git clone -b stable/mitaka https://git.openstack.org/openstack-dev/devstack
+```
+
 `devstack/local.conf`に、以下のようにバージョンを指定
 
 ```
@@ -16,10 +22,16 @@ NEUTRON_BRANCH=stable/mitaka
 SWIFT_BRANCH=stable/mitaka
 ```
 
-`https://rdoproject.org/repos/rdo-release.rpm`は最新安定版のリポジトリーパッケージを提供するので変更は必要なし。
+`https://rdoproject.org/repos/rdo-release.rpm`は最新安定版のリポジトリーパッケージを提供するので、リポジトリーURLの変更は必要なし。
 
 
 ## liberty
+
+ソースのクローン
+
+```
+$ git clone -b stable/liberty https://git.openstack.org/openstack-dev/devstack
+```
 
 `devstack/local.conf`に、以下のようにバージョンを指定
 
